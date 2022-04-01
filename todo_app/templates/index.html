@@ -4,8 +4,18 @@
 {% block content %}
   <div class="jumbotron">
     <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Just another to-do app.</p>
+    <p class="lead">Craig's Super Duper To-Do App</p>
   </div>
+
+  <form action="add" method="post" class="jumbotron">
+    <div>
+      <label for="description">Enter item description: </label>
+      <input type="text" name="description" id="description" required>
+    </div>
+    <div>
+      <input type="submit" value="Add new item!">
+    </div>
+  </form>
 
   <div class="row">
     <div class="col-md-12">
