@@ -2,9 +2,8 @@
 {% block title %}To-Do App{% endblock %}
 
 {% block content %}
-  <div class="jumbotron">
-    <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Craig's Super Duper To-Do App</p>
+  <div class="h1">
+    <h1 class="display-5">Craig's Tello API To-Do App</h1>
   </div>
 
   <form action="add" method="post" class="jumbotron">
@@ -22,7 +21,7 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
           {% for item in items %}
-                <li>ID[{{ item.id }}] Title[{{ item.title }}] Status[{{ item.status }}]</li>
+                <li>ID[{{ item.id }}] Name[{{ item.name }}] Status[{{ item.status }}]</li>
           {% endfor %}
       </ul>
     </div>
