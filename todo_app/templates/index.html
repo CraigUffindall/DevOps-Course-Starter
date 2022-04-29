@@ -3,7 +3,7 @@
 
 {% block content %}
   <div class="h1">
-    <h1 class="display-5">Craig's Tello API To-Do App</h1>
+    <h1 class="display-5">Craig's Trello API To-Do App</h1>
   </div>
 
   <form action="add" method="post" class="jumbotron">
@@ -16,14 +16,18 @@
     </div>
   </form>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Items</h2>
-      <ul class="list-group mb-4">
-          {% for item in items %}
-                <li>ID[{{ item.id }}] Name[{{ item.name }}] Status[{{ item.status }}]</li>
-          {% endfor %}
-      </ul>
-    </div>
-  </div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+    </tr>    
+    {% for item in items %}
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.status}}</td>
+    </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
