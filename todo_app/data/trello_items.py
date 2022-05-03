@@ -2,6 +2,17 @@ import requests
 import os
 
 
+class Item:
+    id = ''
+    status = ''
+    name = ''
+
+    def __init__(self, id, status, name):
+        self.id = id
+        self.status = status
+        self.name = name
+
+
 def get_items():
     json = get_open_cards()
     items = []
@@ -9,7 +20,7 @@ def get_items():
     for list in json:
         list_name = list['name']
         for card in list['cards']:
-            items.append({ 'id':card['id'], 'status':list_name, 'name':card['name'] })
+            items.append(Item(card['id'],list_name,card['name']))
 
     return items
 
