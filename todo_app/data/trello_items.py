@@ -1,5 +1,6 @@
 import requests
 import os
+import urllib.parse
 
 
 class Item:
@@ -33,17 +34,20 @@ def get_open_cards():
 
 def move_to_do(id):
     list_id = get_list_id('To Do')
-    requests.put('https://api.trello.com/1/cards/' + id, params={'key':os.getenv('API_KEY'),'token':os.getenv('API_TOKEN'),'idList':list_id})
+    encoded_id = urllib.parse.quote(id, safe='')
+    requests.put('https://api.trello.com/1/cards/' + encoded_id, params={'key':os.getenv('API_KEY'),'token':os.getenv('API_TOKEN'),'idList':list_id})
 
 
 def move_doing(id):
     list_id = get_list_id('Doing')
-    requests.put('https://api.trello.com/1/cards/' + id, params={'key':os.getenv('API_KEY'),'token':os.getenv('API_TOKEN'),'idList':list_id})
+    encoded_id = urllib.parse.quote(id, safe='')
+    requests.put('https://api.trello.com/1/cards/' + encoded_id, params={'key':os.getenv('API_KEY'),'token':os.getenv('API_TOKEN'),'idList':list_id})
 
 
 def move_done(id):
     list_id = get_list_id('Done')
-    requests.put('https://api.trello.com/1/cards/' + id, params={'key':os.getenv('API_KEY'),'token':os.getenv('API_TOKEN'),'idList':list_id})
+    encoded_id = urllib.parse.quote(id, safe='')
+    requests.put('https://api.trello.com/1/cards/' + encoded_id, params={'key':os.getenv('API_KEY'),'token':os.getenv('API_TOKEN'),'idList':list_id})
 
 
 def get_list_id(name):
