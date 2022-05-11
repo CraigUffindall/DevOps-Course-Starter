@@ -36,6 +36,8 @@ The `.env` file is used by flask to set environment variables when running `flas
 
 The project requires a number of secret keys in the .env file. Therse are API_KEY, API_TOKEN and TRELLO_BOARD_ID.
 
+The API_KEY should map to the Trello API key. The API_TOKEN should map to the Trello API token. The TRELLO_BOARD_ID should map to the Trello board ID. The Trello board should contain columns "To Do", "Doing" and "Done".
+
 ## Running the App
 
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:

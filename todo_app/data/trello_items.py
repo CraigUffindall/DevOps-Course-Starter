@@ -3,10 +3,6 @@ import os
 
 
 class Item:
-    id = ''
-    status = ''
-    name = ''
-
     def __init__(self, id, status, name):
         self.id = id
         self.status = status
