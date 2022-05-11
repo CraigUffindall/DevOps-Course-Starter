@@ -2,29 +2,42 @@
 {% block title %}To-Do App{% endblock %}
 
 {% block content %}
-  <div class="jumbotron">
-    <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Craig's Super Duper To-Do App</p>
+  <div class="h1">
+    <h1 class="display-5">Craig's Trello API To-Do App</h1>
   </div>
 
-  <form action="add" method="post" class="jumbotron">
+  <form action="add" method="post" style="padding-top: 10px; padding-bottom: 10px;">
     <div>
       <label for="description">Enter item description: </label>
       <input type="text" name="description" id="description" required>
-    </div>
-    <div>
       <input type="submit" value="Add new item!">
     </div>
   </form>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Items</h2>
-      <ul class="list-group mb-4">
-          {% for item in items %}
-                <li>ID[{{ item.id }}] Title[{{ item.title }}] Status[{{ item.status }}]</li>
-          {% endfor %}
-      </ul>
-    </div>
-  </div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Change Status</th>
+    </tr>    
+    {% for item in items %}
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.status}}</td>
+      <td>
+        <form style="display: inline;" action="todo/{{item.id}}" method="post">
+          <input type="submit" value="To Do">
+        </form>
+        <form style="display: inline;" action="doing/{{item.id}}" method="post">
+          <input type="submit" value="Doing">
+        </form>
+        <form style="display: inline;" action="done/{{item.id}}" method="post">
+          <input type="submit" value="Done">
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
