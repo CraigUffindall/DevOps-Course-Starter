@@ -44,7 +44,7 @@ $ poetry add pytest --dev
 ```
 
 ## Running Tests
-Tests can be run from a terminal using the following commandL
+Tests can be run from a terminal using the following command
 ```bash
 $ poetry run pytest tests
 ```
