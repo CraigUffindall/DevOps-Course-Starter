@@ -2,7 +2,7 @@
 
 from email.errors import InvalidBase64PaddingDefect
 import pytest
-from todo_app import viewmodel
+from todo_app.viewmodel import ViewModel
 from todo_app.data.trello_items import Item
 
 @pytest.fixture
@@ -17,9 +17,9 @@ def view_model():
     items.append(Item(7, 'Done', 'item7'))
     items.append(Item(8, 'Done', 'item8'))
     items.append(Item(9, 'Done', 'item9'))
-    return viewmodel.ViewModel(items)
+    return ViewModel(items)
 
-def test_view_model_todo_items(view_model: viewmodel.ViewModel):
+def test_view_model_todo_items(view_model: ViewModel):
     # arrange / act
     items = view_model.todo_items
 
@@ -32,7 +32,7 @@ def test_view_model_todo_items(view_model: viewmodel.ViewModel):
     assert items[1].status == 'To Do'
     assert items[1].name == 'item2'
 
-def test_view_model_doing_items(view_model: viewmodel.ViewModel):
+def test_view_model_doing_items(view_model: ViewModel):
     # arrange / act
     items = view_model.doing_items
 
@@ -48,7 +48,7 @@ def test_view_model_doing_items(view_model: viewmodel.ViewModel):
     assert items[2].status == 'Doing'
     assert items[2].name == 'item5'
 
-def test_view_model_done_items(view_model: viewmodel.ViewModel):
+def test_view_model_done_items(view_model: ViewModel):
     # arrange / act
     items = view_model.done_items
 
