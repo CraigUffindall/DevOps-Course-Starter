@@ -14,27 +14,75 @@
     </div>
   </form>
 
+  <div>
+    <h1>To Do</h1>
+  </div>
   <table>
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Status</th>
       <th>Change Status</th>
     </tr>    
-    {% for item in items %}
+    {% for item in view_model.todo_items %}
     <tr>
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>
-      <td>{{item.status}}</td>
+      <td>
+        <form style="display: inline;" action="doing/{{item.id}}" method="post">
+          <input type="submit" value="Doing">
+        </form>
+        <form style="display: inline;" action="done/{{item.id}}" method="post">
+          <input type="submit" value="Done">
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div>
+    <h1>Doing</h1>
+  </div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Change Status</th>
+    </tr>    
+    {% for item in view_model.doing_items %}
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>
+        <form style="display: inline;" action="todo/{{item.id}}" method="post">
+          <input type="submit" value="To Do">
+        </form>
+        <form style="display: inline;" action="done/{{item.id}}" method="post">
+          <input type="submit" value="Done">
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div>
+    <h1>Done</h1>
+  </div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Change Status</th>
+    </tr>    
+    {% for item in view_model.done_items %}
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
       <td>
         <form style="display: inline;" action="todo/{{item.id}}" method="post">
           <input type="submit" value="To Do">
         </form>
         <form style="display: inline;" action="doing/{{item.id}}" method="post">
           <input type="submit" value="Doing">
-        </form>
-        <form style="display: inline;" action="done/{{item.id}}" method="post">
-          <input type="submit" value="Done">
         </form>
       </td>
     </tr>

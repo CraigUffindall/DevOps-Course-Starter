@@ -38,6 +38,19 @@ The project requires a number of secret keys in the .env file. Therse are API_KE
 
 The API_KEY should map to the Trello API key. The API_TOKEN should map to the Trello API token. The TRELLO_BOARD_ID should map to the Trello board ID. The Trello board should contain columns "To Do", "Doing" and "Done".
 
+In order to run tests, pytest is required. This is a one-time operation on first setup:
+```bash
+$ poetry add pytest --dev
+```
+
+## Running Tests
+Tests can be run from a terminal using the following command
+```bash
+$ poetry run pytest tests
+```
+
+All tests or individual tests can also be run from the VS Code "Testing" window.
+
 ## Running the App
 
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:
