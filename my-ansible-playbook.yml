@@ -23,11 +23,12 @@
     ansible.builtin.yum:
       name: python3
       state: present
+    become: yes
 
   - name: Install Poetry
     ansible.builtin.shell:
       cmd: curl -sSL https://install.python-poetry.org | python3 -
-      creates: /usr/local/bin
+      creates: /usr/local/bin/poetry
 
   - name: Create To-Do App Directory
     ansible.builtin.file:
