@@ -93,3 +93,20 @@ When the playbook runs, it will do the following tasks:
 - Run todo app
 
 When these steps are complete, you should be able to navigate to the application from a brower. Just enter the IP address of the host into your address bar, followed by :5000. For example http://13.41.161.109:5000/.
+
+## Building and running docker containers
+To build and run a development docker container, run the following commands in a docker prompt:
+```bash
+docker build --target development --tag todo-app:dev .
+docker run -d -p 7000:8000 --env-file .\.env --mount type=bind,source="$(pwd)"/todo_app,target=/todo_app todo-app:dev
+```
+
+The container should then be running on http://localhost:7000/
+
+To build and run a production docker container, run the following commands in a docker prompt:
+```bash
+docker build --target production --tag todo-app:prod .
+docker run -d -p 7001:8000 --env-file .\.env --mount type=bind,source="$(pwd)"/todo_app,target=/todo_app todo-app:prod
+```
+
+The container should then be running on http://localhost:7001/
