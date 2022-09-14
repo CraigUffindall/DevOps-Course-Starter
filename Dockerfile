@@ -4,11 +4,14 @@ FROM python:3-slim-buster as Base
 # Install poetry...
 RUN pip install poetry
 
-# Copy application code...
-COPY . .
+# Only copy the files required to specify our dependencies
+COPY pyproject.toml poetry.lock /
 
 # Install prerequisites
 RUN poetry install --no-dev --no-root
+
+# Copy everything else...
+COPY . .
 
 # Expose port to listen on...
 EXPOSE 8000
