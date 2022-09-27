@@ -44,6 +44,19 @@ Tests can be run from a terminal using the following command
 $ poetry run pytest tests
 ```
 
+If all the tests run successfully, you should see terminal output something like this:
+```
+========================= test session starts ========================
+platform win32 -- Python 3.10.2, pytest-7.1.2, pluggy-1.0.0
+rootdir: C:\Users\joe.bloggs\DevOps-Course-Starter
+collected 4 items
+
+tests\test_client.py .                                          [ 25%]
+tests\test_viewmodel.py ...                                     [100%]
+
+========================= 4 passed in 0.54s ==========================
+```
+
 All tests or individual tests can also be run from the VS Code "Testing" window.
 
 ## Running the App
