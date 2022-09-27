@@ -50,3 +50,6 @@ RUN pip install python-dotenv
 
 # Define entry point...
 ENTRYPOINT ["poetry", "run", "pytest", "tests"]
+
+### Commands to build and run test image
+# See README file
