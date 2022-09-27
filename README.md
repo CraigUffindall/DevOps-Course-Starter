@@ -130,8 +130,8 @@ platform linux -- Python 3.10.7, pytest-7.1.3, pluggy-1.0.0
 rootdir: /tests
 collected 4 items
 
-tests/test_client.py .                                                   [ 25%]
-tests/test_viewmodel.py ...                                              [100%]
+tests/test_client.py .                                                    [ 25%]
+tests/test_viewmodel.py ...                                               [100%]
 
 ============================== 4 passed in 0.33s ===============================
 ```
