@@ -119,9 +119,6 @@ env/
 ### Configuration files ###
 .env
 
-### Test folder ###
-tests/
-
 ### vscode folder ###
 .vscode/
 

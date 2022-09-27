@@ -39,12 +39,13 @@ $ poetry add pytest --dev
 ```
 
 ## Running Tests
-Tests can be run from a terminal using the following command
+Tests can be run from a terminal using the following commands
 ```bash
 $ poetry run pytest tests
 ```
-
-All tests or individual tests can also be run from the VS Code "Testing" window.
+```bash
+$ poetry run pytest tests_e2e
+```
 
 ## Running the App
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:
@@ -110,3 +111,45 @@ docker run -d -p 7001:8000 --env-file .\.env --mount type=bind,source="$(pwd)"/t
 ```
 
 The container should then be running on http://localhost:7001/
+
+## Testing in docker containers
+To build a test docker container, run the following command in a docker prompt:
+```bash
+docker build --target test --tag todo-app:test .
+```
+
+Unit tests can then be run by running the following command:
+```bash
+docker run todo-app:test tests
+```
+
+You should see terminal output something like this:
+
+```
+========================= test session starts =========================
+platform linux -- Python 3.10.7, pytest-7.1.3, pluggy-1.0.0
+rootdir: /tests
+collected 3 items
+
+tests/test_viewmodel.py ...                                      [100%]
+
+========================= 3 passed in 0.14s ===========================
+```
+
+End to end tests can then be run by running the following command:
+```bash
+docker run todo-app:test tests_e2e
+```
+
+You should see terminal output something like this:
+
+```
+========================= test session starts =========================
+platform linux -- Python 3.10.7, pytest-7.1.3, pluggy-1.0.0
+rootdir: /tests_e2e
+collected 1 item
+
+tests_e2e/test_client.py .                                       [100%]
+
+========================= 1 passed in 0.27s ===========================
+```
