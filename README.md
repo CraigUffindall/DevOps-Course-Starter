@@ -39,13 +39,12 @@ $ poetry add pytest --dev
 ```
 
 ## Running Tests
-Tests can be run from a terminal using the following commands
+Tests can be run from a terminal using the following command
 ```bash
 $ poetry run pytest tests
 ```
-```bash
-$ poetry run pytest tests_e2e
-```
+
+All tests or individual tests can also be run from the VS Code "Testing" window.
 
 ## Running the App
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:
@@ -118,38 +117,21 @@ To build a test docker container, run the following command in a docker prompt:
 docker build --target test --tag todo-app:test .
 ```
 
-Unit tests can then be run by running the following command:
+Tests can then be run by running the following command:
 ```bash
-docker run todo-app:test tests
+docker run todo-app:test
 ```
 
-You should see terminal output something like this:
+If all the tests run successfully, you should see terminal output something like this:
 
 ```
-========================= test session starts =========================
+============================= test session starts ==============================
 platform linux -- Python 3.10.7, pytest-7.1.3, pluggy-1.0.0
 rootdir: /tests
-collected 3 items
+collected 4 items
 
-tests/test_viewmodel.py ...                                      [100%]
+tests/test_client.py .                                                   [ 25%]
+tests/test_viewmodel.py ...                                              [100%]
 
-========================= 3 passed in 0.14s ===========================
-```
-
-End to end tests can then be run by running the following command:
-```bash
-docker run todo-app:test tests_e2e
-```
-
-You should see terminal output something like this:
-
-```
-========================= test session starts =========================
-platform linux -- Python 3.10.7, pytest-7.1.3, pluggy-1.0.0
-rootdir: /tests_e2e
-collected 1 item
-
-tests_e2e/test_client.py .                                       [100%]
-
-========================= 1 passed in 0.27s ===========================
+============================== 4 passed in 0.33s ===============================
 ```

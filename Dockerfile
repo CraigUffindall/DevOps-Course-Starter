@@ -49,4 +49,4 @@ RUN pip install flask
 RUN pip install python-dotenv
 
 # Define entry point...
-ENTRYPOINT ["poetry", "run", "pytest"]
+ENTRYPOINT ["poetry", "run", "pytest", "tests"]
