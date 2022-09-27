@@ -24,7 +24,7 @@ def test_view_model_todo_items(view_model: ViewModel):
     items = view_model.todo_items
 
     # assert
-    assert len(items) == 20
+    assert len(items) == 2
     assert items[0].id == 1
     assert items[0].status == 'To Do'
     assert items[0].name == 'item1'
