@@ -35,7 +35,7 @@ jobs:
       run: docker build --target production --tag todo-app:prod .
 
     - name: Tag Docker image
-      run: docker tag todo-app:prod cuffindall/todo-app:$env:GITHUB_SHA
+      run: docker tag todo-app:prod cuffindall/todo-app:$GITHUB_SHA
 
     - name: Publish to Docker Hub
-      run: docker push cuffindall/todo-app:$env:GITHUB_SHA
+      run: docker push cuffindall/todo-app:$GITHUB_SHA
