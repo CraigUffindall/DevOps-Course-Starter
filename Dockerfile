@@ -16,7 +16,7 @@ COPY . .
 # Expose port to listen on...
 EXPOSE 8000
 
-
+#--------------------------------------------------------------------------------#
 
 ### Production image...
 FROM base as production
@@ -27,7 +27,7 @@ ENTRYPOINT poetry run gunicorn --bind 0.0.0.0 "todo_app.app:create_app()"
 ### Commands to build and run development image
 # See README file
 
-
+#--------------------------------------------------------------------------------#
 
 ### Development image...
 FROM base as development
@@ -36,4 +36,20 @@ FROM base as development
 ENTRYPOINT poetry run flask run --host=0.0.0.0 --port=8000
 
 ### Commands to build and run production image
+# See README file
+
+#--------------------------------------------------------------------------------#
+
+### Testing image...
+FROM base as test
+
+# Install pytest, flask and dotenv...
+RUN pip install pytest
+RUN pip install flask
+RUN pip install python-dotenv
+
+# Define entry point...
+ENTRYPOINT ["poetry", "run", "pytest", "tests"]
+
+### Commands to build and run test image
 # See README file
