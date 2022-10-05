@@ -14,9 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Docker build
-    - run: docker build --target test --tag todo-app:test .
+      run: docker build --target test --tag todo-app:test .
     - name: Docker run tests
-    - run: docker run todo-app:test
+      run: docker run todo-app:test
 
   CD_Publish:
     name: CD Publish
@@ -26,6 +26,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Start publishing
-    - run: echo "Publishing!"
+      run: echo "Publishing!"
     - name: Login to Docker Hub
-    - run: docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_PASSWORD }}
+      run: docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_PASSWORD }}
