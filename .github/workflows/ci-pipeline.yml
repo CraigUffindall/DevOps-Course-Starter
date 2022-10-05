@@ -18,7 +18,7 @@ jobs:
 
   CD_Publish:
     name: CD Publish
-    if: ${{ github.ref == 'refs/heads/dev/Module8-ProjectExercise' && github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/dev/Module8-ProjectExercisex' && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     needs: [CI_Build_And_Test]
     steps:
