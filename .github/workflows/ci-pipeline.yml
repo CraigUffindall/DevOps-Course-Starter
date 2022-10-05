@@ -31,5 +31,7 @@ jobs:
       run: docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Build Docker image
       run: docker build --target production --tag todo-app:prod .
+    - name: Tag Docker image
+      run: docker tag todo-app:prod cuffindall/todo-app:prod
     - name: Publish to Docker Hub
       run: docker push cuffindall/todo-app:prod
