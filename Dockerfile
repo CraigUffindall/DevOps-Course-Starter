@@ -1,14 +1,19 @@
 ### Base image...
 FROM python:3-slim-buster as Base
 
+ENV PORT=8000
+
 # Install poetry...
 RUN pip install poetry
 
 # Only copy the files required to specify our dependencies
 COPY pyproject.toml poetry.lock /
 
+COPY entrypoint.sh /
+RUN chmod +x ./entrypoint.sh
+
 # Install prerequisites
-RUN poetry install --no-dev --no-root
+RUN poetry config virtualenvs.create false --local && poetry install --no-dev --no-root
 
 # Copy everything else...
 COPY . .
@@ -22,7 +27,7 @@ EXPOSE 8000
 FROM base as production
 
 # Define entry point...
-ENTRYPOINT poetry run gunicorn --bind 0.0.0.0 "todo_app.app:create_app()"
+ENTRYPOINT ./entrypoint.sh
 
 ### Commands to build and run development image
 # See README file
