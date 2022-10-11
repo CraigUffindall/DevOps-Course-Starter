@@ -27,6 +27,9 @@ jobs:
     needs: [CI_Build_And_Test]
     steps:
     - uses: actions/checkout@v2
+
+    - name: Docker build
+      run: docker build --target production --tag todo-app:production .
     
     - name: Login to Docker Hub
       run: docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_PASSWORD }}
