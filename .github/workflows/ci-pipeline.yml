@@ -22,6 +22,7 @@ jobs:
 
   CD_Publish_Docker_Hub:
     name: CD Publish to Docker Hub
+    needs: [CI_Build_And_Test]
     if: ${{ (github.ref == 'refs/heads/dev/Module8-ProjectExercise' || github.ref == 'refs/heads/main') && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
