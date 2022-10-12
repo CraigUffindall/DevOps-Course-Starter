@@ -7,10 +7,7 @@ ENV PORT=8000
 RUN pip install poetry
 
 # Only copy the files required to specify our dependencies
-COPY pyproject.toml poetry.lock /
-
-COPY entrypoint.sh /
-RUN chmod +x ./entrypoint.sh
+COPY pyproject.toml poetry.lock poetry.toml /
 
 # Install prerequisites
 RUN poetry config virtualenvs.create false --local && poetry install --no-dev --no-root
@@ -29,7 +26,7 @@ FROM base as development
 # Define entry point...
 ENTRYPOINT poetry run flask run --host=0.0.0.0 --port=8000
 
-### Commands to build and run production image
+### Commands to build and run development image
 # See README file
 
 #--------------------------------------------------------------------------------#
@@ -53,8 +50,12 @@ ENTRYPOINT ["poetry", "run", "pytest", "tests"]
 ### Production image...
 FROM base as production
 
+# Copy entry point
+COPY entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
+
 # Define entry point...
 ENTRYPOINT ./entrypoint.sh
 
-### Commands to build and run development image
+### Commands to build and run production image
 # See README file
