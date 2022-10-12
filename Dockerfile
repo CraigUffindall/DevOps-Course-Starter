@@ -23,17 +23,6 @@ EXPOSE 8000
 
 #--------------------------------------------------------------------------------#
 
-### Production image...
-FROM base as production
-
-# Define entry point...
-ENTRYPOINT ./entrypoint.sh
-
-### Commands to build and run development image
-# See README file
-
-#--------------------------------------------------------------------------------#
-
 ### Development image...
 FROM base as development
 
@@ -57,4 +46,15 @@ RUN pip install python-dotenv
 ENTRYPOINT ["poetry", "run", "pytest", "tests"]
 
 ### Commands to build and run test image
+# See README file
+
+#--------------------------------------------------------------------------------#
+
+### Production image...
+FROM base as production
+
+# Define entry point...
+ENTRYPOINT ./entrypoint.sh
+
+### Commands to build and run development image
 # See README file
