@@ -8,21 +8,21 @@ on:
       - "**/README.md"
 
 jobs:
-  CI_Build_And_Test:
-    name: CI Build & Test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+  # CI_Build_And_Test:
+  #   name: CI Build & Test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
 
-    - name: Docker build
-      run: docker build --target test --tag todo-app:test .
+  #   - name: Docker build
+  #     run: docker build --target test --tag todo-app:test .
 
-    - name: Docker run tests
-      run: docker run todo-app:test
+  #   - name: Docker run tests
+  #     run: docker run todo-app:test
 
   CD_Publish_Docker_Hub:
     name: CD Publish to Docker Hub
-    needs: [CI_Build_And_Test]
+    # needs: [CI_Build_And_Test]
     if: ${{ (github.ref == 'refs/heads/dev/Module8-ProjectExercise' || github.ref == 'refs/heads/main') && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
