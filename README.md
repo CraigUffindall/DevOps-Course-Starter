@@ -148,3 +148,35 @@ tests/test_viewmodel.py ...                                               [100%]
 
 ============================== 4 passed in 0.33s ===============================
 ```
+
+## Hosting in Heroku
+
+The todo website can be manually pushed up to Heroku (a hosting provider - free to use up until 28th November 2022!).
+
+The commands to do this are as follows:
+
+```bash
+# Heroku login...
+heroku login
+heroku container:login
+
+# Build and run docker container (check it works locally before pushing!)
+docker build --target production --tag todo-app:prod .
+docker run -d -p 7001:8000 --env-file .\.env --mount type=bind,source="$(pwd)"/todo_app,target=/todo_app todo-app:prod
+
+# Tag the docker image
+docker tag todo-app:prod registry.heroku.com/cu-todo-app/web
+docker push registry.heroku.com/cu-todo-app/web
+
+# Release to Heroku
+heroku container:release web -a cu-todo-app
+```
+
+The ci-pipeline included in this project automatically does the following:
+- Pushes a production image to Docker Hub.
+- Delploys this image to Heroku.
+- Doesn't reveal any secret values.
+- Only deploys if the tests pass and configured to only run for updates to the main branch (or the module 8 dev branch used for testing it, while it still exists).
+
+You can see the app running in Heroku on the following link:
+https://cu-todo-app.herokuapp.com/
